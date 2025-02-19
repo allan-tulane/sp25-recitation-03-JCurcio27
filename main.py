@@ -8,7 +8,7 @@ class BinaryNumber:
     """ done """
     def __init__(self, n):
         self.decimal_val = n               
-        self.binary_vec = list('{0:b}'.format(n)) 
+        self.binary_vec = list('{0:b}'.format(n))
         
     def __repr__(self):
         return('decimal=%d binary=%s' % (self.decimal_val, ''.join(self.binary_vec)))
@@ -49,9 +49,27 @@ def quadratic_multiply(x, y):
     return _quadratic_multiply(x,y).decimal_val
 
 def _quadratic_multiply(x, y):
-    ### TODO
-    pass
-    ###
+    xvec = BinaryNumber(x).binary_vec
+    yvec = BinaryNumber(y).binary_vec
+    (xvec, yvec) = pad(xvec,yvec)
+
+    if len(xvec) == 1 and len(yvec) == 1:
+        return BinaryNumber(int(xvec[0]) * int(yvec[0]))
+        
+    xleft, xright = split_number(xvec)
+    
+    yleft, yright = split_number(yvec)
+    
+    ##xleft = bit_shift(xleft, len(xright.binary_vec)).binary_vec
+    ##yleft = bit_shift(yleft, len(yright.binary_vec)).binary_vec
+
+    part1 = bit_shift((_quadratic_multiply(xleft.decimal_val, yleft.decimal_val)), len(xright.binary_vec))
+    part2 = bit_shift((_quadratic_multiply(xleft.decimal_val, yright.decimal_val) + _quadratic_multiply(xright.decimal_val,           yleft.decimal_val)), len(xleft.binary_vec)//2)
+    part3 = _quadratic_multiply(xright.decimal_val, yright.decimal_val)
+
+    return BinaryNumber(part1.decimal_val + part2.decimal_val + part3.decimal_val)
+    
+print(quadratic_multiply(1, 1))
 
 
     
