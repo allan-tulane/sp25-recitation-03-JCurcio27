@@ -56,18 +56,18 @@ def _quadratic_multiply(x, y):
     if x<=1 and y <= 1:
         return BinaryNumber(x*y)
         
-    xleft, xright = split_number(xvec)
+    x_left, x_right = split_number(xvec)
     
-    yleft, yright = split_number(yvec)
+    y_left, y_right = split_number(yvec)
     
     ##xleft = bit_shift(xleft, len(xright.binary_vec)).binary_vec
     ##yleft = bit_shift(yleft, len(yright.binary_vec)).binary_vec
     
     n = len(xvec)
-    p1 = _quadratic_multiply(xleft.decimal_val, yleft.decimal_val)
-    p2 = _quadratic_multiply(xleft.decimal_val, yright.decimal_val)
-    p3 = _quadratic_multiply(xright.decimal_val, yleft.decimal_val)
-    p4 = _quadratic_multiply(xright.decimal_val, yright.decimal_val)
+    p1 = _quadratic_multiply(x_left.decimal_val, y_left.decimal_val)
+    p2 = _quadratic_multiply(x_left.decimal_val, y_right.decimal_val)
+    p3 = _quadratic_multiply(x_right.decimal_val, y_left.decimal_val)
+    p4 = _quadratic_multiply(x_right.decimal_val, y_right.decimal_val)
 
     return BinaryNumber(
         bit_shift(p1, n).decimal_val + 
@@ -87,8 +87,6 @@ def test_quadratic_multiply(x, y, f):
     time_elapsed = (time.time() - start)*1000
     
     return time_elapsed
-
-
     
     
 
