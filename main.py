@@ -84,8 +84,11 @@ def _quadratic_multiply(x, y):
 def test_quadratic_multiply(x, y, f):
     start = time.time()
     result = f(x, y)
+    time_elapsed = (time.time() - start)*1000
     
-    return (time.time() - start)*1000
+    # Verify the result is correct
+    assert result == x * y, f"Expected {x * y}, but got {result}"
+    return time_elapsed
 
 
     
