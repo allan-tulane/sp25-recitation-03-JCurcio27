@@ -88,7 +88,7 @@ def test_quadratic_multiply(x, y, f):
     
     return time_elapsed
 
-print(test_quadratic_multiply(5904235780235078253, 128124890235892350, quadratic_multiply))
+
     
     
 
